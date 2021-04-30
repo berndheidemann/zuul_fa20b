@@ -74,6 +74,25 @@ public class Game {
         wizardRoom.setExit("window", marketsquare);
         wizardRoom.setExit("down", templePyramid);
 
+        Item bow = new Item("bow", "a bow made of wood", 0.5);
+        Item treasure = new Item("treasure", "a little treasure with coins", 7.5);
+        Item arrow = new Item("arrow", "a quiver with various arrows", 1);
+        Item plant = new Item("plant", "a healing plant", 0.5);
+        Item cacao = new Item("cacao", "a little cacao tree", 5);
+        Item knife = new Item("knife", "a tiny very sharp knife", 1.0);
+        Item food = new Item("food", "a plate of hearty meat and maize porridge", 0.5);
+        Item spear = new Item("spear", "a spear with a sharp point", 5.0);
+        Item jewellery = new Item("jewellery", "a very pretty headdress", 1);
+
+        marketsquare.putItem(bow);
+        cave.putItem(treasure);
+        wizardRoom.putItem(arrow);
+        jungle.putItem(plant);
+        jungle.putItem(cacao);
+        sacrificialSite.putItem(knife);
+        hut.putItem(spear);
+        tavern.putItem(food);
+        basement.putItem(jewellery);
 
         currentRoom = marketsquare;  // start game on marketsquare
     }
@@ -134,6 +153,8 @@ public class Game {
             goRoom(command);
         } else if (commandWord.equals("quit")) {
             wantToQuit = quit(command);
+        } else if (commandWord.equals("look")) {
+            look();
         }
 
         return wantToQuit;
@@ -151,7 +172,7 @@ public class Game {
         System.out.println("through the jungle. At once there is a glade. On it there a buildings...");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("   " + this.parser.showCommands());
     }
 
     /**
@@ -193,5 +214,9 @@ public class Game {
         } else {
             return true;  // signal that we want to quit
         }
+    }
+
+    private void look() {
+        printRoomInformation();
     }
 }
