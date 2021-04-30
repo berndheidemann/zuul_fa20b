@@ -57,4 +57,8 @@ public class Room {
         return description;
     }
 
+    public String getLongDescription() {
+        return "You are " + this.description + "\n" + "Exits: " + this.exitsToString();
+    }
+
 }
