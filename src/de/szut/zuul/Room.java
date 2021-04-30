@@ -16,12 +16,12 @@ package de.szut.zuul;
  */
 public class Room {
     public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
-    public Room upExit;
-    public Room downExit;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
+    private Room upExit;
+    private Room downExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -62,6 +62,51 @@ public class Room {
         if (down != null) {
             downExit = down;
         }
+    }
+
+    public Room getExit(String direction) {
+        if (direction.equals("north")) {
+            return northExit;
+        }
+        if (direction.equals("east")) {
+            return eastExit;
+        }
+        if (direction.equals("west")) {
+            return westExit;
+        }
+        if (direction.equals("south")) {
+            return southExit;
+        }
+        if (direction.equals("up")) {
+            return upExit;
+        }
+        if (direction.equals("down")) {
+            return downExit;
+        }
+        return null;
+    }
+
+    public String exitsToString() {
+        StringBuilder exits = new StringBuilder();
+        if (northExit != null) {
+            exits.append("north ");
+        }
+        if (eastExit != null) {
+            exits.append("east ");
+        }
+        if (southExit != null) {
+            exits.append("south ");
+        }
+        if (westExit != null) {
+            exits.append("west ");
+        }
+        if (upExit != null) {
+            exits.append("up ");
+        }
+        if (downExit != null) {
+            exits.append("down ");
+        }
+        return exits.toString();
     }
 
     /**
