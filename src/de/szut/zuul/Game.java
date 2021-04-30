@@ -49,18 +49,31 @@ public class Game {
         basement = new Room("Basement of the temple pyramid");
 
 
-        // initialise room exits
-        marketsquare.setExits(tavern, templePyramid, null, sacrificialSite, null, null);
-        templePyramid.setExits(hut, null, null, marketsquare, wizardRoom, basement);
-        tavern.setExits(null, hut, marketsquare, null, null, null);
-        sacrificialSite.setExits(null, marketsquare, null, null, null, cave);
-        hut.setExits(null, jungle, templePyramid, tavern, null, null);
-        jungle.setExits(null, null, null, hut, null, null);
-        secretPassage.setExits(null, basement, null, cave, null, null);
-        cave.setExits(null, secretPassage, beach, null, sacrificialSite, null);
-        beach.setExits(cave, null, null, null, null, null);
-        wizardRoom.setExits(null, null, null, null, null, templePyramid);
-        basement.setExits(null, null, null, secretPassage, templePyramid, null);
+        marketsquare.setExit("north", tavern);
+        marketsquare.setExit("east", templePyramid);
+        marketsquare.setExit("west", sacrificialSite);
+        tavern.setExit("south", marketsquare);
+        tavern.setExit("east", hut);
+        hut.setExit("south", templePyramid);
+        hut.setExit("east", jungle);
+        hut.setExit("west", tavern);
+        jungle.setExit("west", hut);
+        templePyramid.setExit("north", hut);
+        templePyramid.setExit("up", wizardRoom);
+        templePyramid.setExit("down", basement);
+        templePyramid.setExit("west", marketsquare);
+        basement.setExit("up", templePyramid);
+        basement.setExit("west", secretPassage);
+        secretPassage.setExit("east", basement);
+        secretPassage.setExit("west", cave);
+        cave.setExit("east", secretPassage);
+        cave.setExit("south", beach);
+        cave.setExit("up", sacrificialSite);
+        sacrificialSite.setExit("east", marketsquare);
+        sacrificialSite.setExit("down", cave);
+        wizardRoom.setExit("window", marketsquare);
+        wizardRoom.setExit("down", templePyramid);
+
 
         currentRoom = marketsquare;  // start game on marketsquare
     }
